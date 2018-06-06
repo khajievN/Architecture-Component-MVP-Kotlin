@@ -8,6 +8,6 @@ import javax.inject.Inject
  */
 class LoginRepository @Inject constructor(private val endpoint: Endpoint) {
 
-    fun login(loginBody: LoginBody?) = endpoint.login(loginBody!!.email, loginBody.password)
+    fun login(loginBody: LoginBody?) = endpoint.login(loginBody!!)
 
 }

@@ -2,12 +2,15 @@ package com.nizzle94.architecturecomponentmvp.di.module
 
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
 import com.nizzle94.data.login.LoginRepository
+import com.nizzle94.data.main.movie.genre.GenreRepository
+import com.nizzle94.data.main.movie.movies.MoviesRepository
 import com.nizzle94.domain.login.LoginUseCase
+import com.nizzle94.domain.main.movie.genre.GenreUseCase
+import com.nizzle94.domain.main.movie.movies.MoviesUseCase
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.internal.schedulers.NewThreadScheduler
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Named
 
@@ -32,12 +35,33 @@ class UseCaseModule {
     @AppScope
     @Provides
     fun providesLoginUseCase(
-        @Named("ioScheduler") ioScheduler: Scheduler,
-        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
-        loginRepository: LoginRepository
+            @Named("ioScheduler") ioScheduler: Scheduler,
+            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+            loginRepository: LoginRepository
     ): LoginUseCase {
         return LoginUseCase(loginRepository, ioScheduler, mainThreadScheduler)
 
     }
 
+    @AppScope
+    @Provides
+    fun providesGenreUseCase(
+            @Named("ioScheduler") ioScheduler: Scheduler,
+            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+            genreRepository: GenreRepository
+    ): GenreUseCase {
+        return GenreUseCase(genreRepository, ioScheduler, mainThreadScheduler)
+
+    }
+
+    @AppScope
+    @Provides
+    fun providesMoviesUseCase(
+            @Named("ioScheduler") ioScheduler: Scheduler,
+            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+            moviesRepository: MoviesRepository
+    ): MoviesUseCase {
+        return MoviesUseCase(moviesRepository, ioScheduler, mainThreadScheduler)
+
+    }
 }

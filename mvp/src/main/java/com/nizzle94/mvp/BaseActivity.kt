@@ -7,7 +7,7 @@ import javax.inject.Inject
 /**
  * Created by Khajiev Nizomjon on 03/06/2018.
  */
-abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
+abstract class BaseActivity<V : BaseView, P : BasePresenter<Any>> : AppCompatActivity() {
 
     @Inject
     lateinit var presenter: P
@@ -23,7 +23,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
     }
 
     private fun initPresenter() {
-        presenter.attachView(this)
+        presenter.attachView(getMvpView())
         presenter.initialise()
     }
 
@@ -32,4 +32,7 @@ abstract class BaseActivity<P : BasePresenter<Any>> : AppCompatActivity() {
         presenter.detachView()
         super.onDestroy()
     }
+
+    abstract fun getMvpView(): V
+
 }

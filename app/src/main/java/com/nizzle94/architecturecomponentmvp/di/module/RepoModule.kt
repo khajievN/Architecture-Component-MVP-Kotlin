@@ -2,7 +2,10 @@ package com.nizzle94.architecturecomponentmvp.di.module
 
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
 import com.nizzle94.data.Endpoint
+import com.nizzle94.data.MoviesEndpoint
 import com.nizzle94.data.login.LoginRepository
+import com.nizzle94.data.main.movie.genre.GenreRepository
+import com.nizzle94.data.main.movie.movies.MoviesRepository
 import dagger.Module
 import dagger.Provides
 
@@ -17,6 +20,18 @@ class RepoModule {
     @AppScope
     fun providesLoginRepository(endpoint: Endpoint): LoginRepository {
         return LoginRepository(endpoint)
+    }
+
+    @Provides
+    @AppScope
+    fun providesGenreRepository(moviesEndpoint: MoviesEndpoint): GenreRepository {
+        return GenreRepository(moviesEndpoint)
+    }
+
+    @Provides
+    @AppScope
+    fun providesMoviesRepository(moviesEndpoint: MoviesEndpoint): MoviesRepository {
+        return MoviesRepository(moviesEndpoint)
     }
 
 }

@@ -21,9 +21,26 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            ext.alwaysUpdateBuildId = false //disable updating buildId
+            ext.enableCrashlytics = false //disable Crashlytics usage
+        }
     }
     dataBinding {
         enabled true
+    }
+
+    if (project.hasProperty('debug')) {
+        splits.abi.enable = false
+        splits.density.enable = false
+    }
+
+    aaptOptions {
+        cruncherEnabled = false
+    }
+
+    if (project.hasProperty('debug')) {
+        aaptOptions.cruncherEnabled = false
     }
 }
 
@@ -39,6 +56,7 @@ dependencies {
     // support Libs
     implementation "com.android.support:appcompat-v7:$rootProject.support_version"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constrsintLayout_version"
+    implementation "com.android.support:recyclerview-v7:$rootProject.support_version"
 //    kapt 'com.android.databinding:compiler:3.2.0-alpha10'
 
     // rxJava

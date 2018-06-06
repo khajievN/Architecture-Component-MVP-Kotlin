@@ -2,6 +2,7 @@ package com.nizzle94.domain.login
 
 import com.nizzle94.data.login.LoginBody
 import com.nizzle94.data.login.LoginRepository
+import com.nizzle94.data.login.UserResponse
 import com.nizzle94.data.reponse.BaseResponse
 import com.nizzle94.domain.UseCase
 import io.reactivex.Scheduler
@@ -16,8 +17,8 @@ class LoginUseCase
     private val loginRepository: LoginRepository,
     private val backgroundThread: Scheduler,
     private val mainThread: Scheduler
-) : UseCase<BaseResponse<String>, LoginBody>(backgroundThread, mainThread) {
-    override fun buildUseCaseSingle(params: LoginBody?): Single<BaseResponse<String>> {
+) : UseCase<BaseResponse<UserResponse>, LoginBody>(backgroundThread, mainThread) {
+    override fun buildUseCaseSingle(params: LoginBody?): Single<BaseResponse<UserResponse>> {
         return loginRepository.login(loginBody = params)
     }
 

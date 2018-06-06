@@ -1,7 +1,10 @@
 package com.nizzle94.data
 
+import com.nizzle94.data.login.LoginBody
+import com.nizzle94.data.login.UserResponse
 import com.nizzle94.data.reponse.BaseResponse
 import io.reactivex.Single
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 /**
@@ -10,7 +13,7 @@ import retrofit2.http.POST
 
 interface Endpoint {
 
-    @POST("/")
-    fun login(email: String, password: String) : Single<BaseResponse<String>>
+    @POST("api/v1/auth/")
+    fun login(@Body authBody: LoginBody) : Single<BaseResponse<UserResponse>>
 
 }

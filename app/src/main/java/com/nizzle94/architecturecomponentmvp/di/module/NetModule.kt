@@ -5,12 +5,17 @@ import com.google.gson.GsonBuilder
 import com.nizzle94.architecturecomponentmvp.BuildConfig
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
 import com.nizzle94.data.Endpoint
+import com.nizzle94.data.MoviesEndpoint
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 
 /**
  * Created by Khajiev Nizomjon on 03/06/2018.
@@ -24,13 +29,14 @@ class NetModule {
     @Provides
     fun providesGson(): Gson {
         val gson = GsonBuilder()
-            .setLenient()
+                .setLenient()
         return gson.create()
     }
 
 
     @AppScope
     @Provides
+    @Named("everything4droid.com_client")
     fun providesOkHttpClient(): OkHttpClient {
 
         val okHttpClient = OkHttpClient.Builder()
@@ -43,15 +49,52 @@ class NetModule {
         return okHttpClient.build()
     }
 
+    @AppScope
+    @Provides
+    @Named("themoviedb.com_client")
+    fun providesMovieOkHttpClient(): OkHttpClient {
+
+        val httpClientBuilder = OkHttpClient.Builder()
+        httpClientBuilder.addInterceptor {
+            val original: Request = it.request()
+
+            val request = original.newBuilder()
+                    .addHeader("api_key", "e1158b8ecd86f1263edb032b433add44")
+                    .addHeader("language", "en-US")
+                    .method(original.method(), original.body())
+                    .build()
+
+            return@addInterceptor it.proceed(request)
+
+        }
+        return httpClientBuilder.build()
+    }
+
 
     @AppScope
     @Provides
-    fun providesRetrofit(gson: Gson, client: OkHttpClient): Retrofit {
+    @Named("everything4droid.com")
+    fun providesRetrofit(gson: Gson, @Named("everything4droid.com_client") client: OkHttpClient): Retrofit {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://everything4droid.com/api/v1/")
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .client(client)
+                .baseUrl("http://everything4droid.com/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+
+        return retrofit.build()
+
+    }
+
+
+    @AppScope
+    @Provides
+    @Named("themoviedb.com")
+    fun providesMoviesRetrofit(gson: Gson, @Named("themoviedb.com_client") client: OkHttpClient): Retrofit {
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.themoviedb.org/")
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
 
         return retrofit.build()
 
@@ -59,9 +102,14 @@ class NetModule {
 
     @AppScope
     @Provides
-    fun providesEndpoint(retrofit: Retrofit): Endpoint {
+    fun providesEndpoint(@Named("everything4droid.com") retrofit: Retrofit): Endpoint {
         return retrofit.create(Endpoint::class.java)
     }
 
+    @AppScope
+    @Provides
+    fun providesMoviesEndpoint(@Named("themoviedb.com") retrofit: Retrofit): MoviesEndpoint {
+        return retrofit.create(MoviesEndpoint::class.java)
+    }
 
 }

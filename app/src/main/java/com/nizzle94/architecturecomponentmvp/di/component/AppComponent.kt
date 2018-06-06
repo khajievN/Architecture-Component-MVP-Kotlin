@@ -7,7 +7,7 @@ import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
 import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelFactory
 import com.nizzle94.architecturecomponentmvp.ui.login.di.LoginComponent
 import com.nizzle94.architecturecomponentmvp.ui.main.di.MainComponent
-import com.nizzle94.cleanarchitecturekotlin.di.viewmodel.ViewModelModule
+import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelModule
 import com.nizzle94.data.Endpoint
 import dagger.Component
 
