@@ -10,16 +10,11 @@ import javax.inject.Inject
  */
 class MainPresenter @Inject constructor(private val mainViewModel: MainViewModel) :
         BasePresenter<MainView>() {
-    override fun initialise() {
-
-    }
 
     override fun disposeSubscriptions() {
     }
 
 
-    fun getViewModel(): MainViewModel {
-        return mainViewModel
-    }
+
 
 }

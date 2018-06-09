@@ -33,7 +33,6 @@ abstract class BaseFragment<V : BaseView, P : BasePresenter<Any>> : Fragment() {
 
     private fun initPresenter() {
         presenter.attachView(getMvpView())
-        presenter.initialise()
     }
 
     override fun onDestroy() {

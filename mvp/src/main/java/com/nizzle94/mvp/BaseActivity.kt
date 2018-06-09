@@ -1,5 +1,6 @@
 package com.nizzle94.mvp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import javax.inject.Inject
@@ -24,7 +25,6 @@ abstract class BaseActivity<V : BaseView, P : BasePresenter<Any>> : AppCompatAct
 
     private fun initPresenter() {
         presenter.attachView(getMvpView())
-        presenter.initialise()
     }
 
     override fun onDestroy() {

@@ -1,6 +1,7 @@
 package com.nizzle94.data
 
 import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
 import com.nizzle94.data.main.movie.movies.MoviesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -19,4 +20,6 @@ interface MoviesEndpoint {
             "&language=en-US")
     fun getMoviesByGenre(@Path("genre_id") genreId: Int): Single<MoviesResponse>
 
+    @GET("/3/movie/{movie_id}?api_key=e1158b8ecd86f1263edb032b433add44")
+    fun getMovieDetail(@Path("movie_id") movieId: Int): Single<MovieDetailResponse>
 }

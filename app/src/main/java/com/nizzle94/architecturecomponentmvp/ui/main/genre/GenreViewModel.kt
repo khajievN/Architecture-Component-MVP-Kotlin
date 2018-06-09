@@ -14,12 +14,14 @@ import javax.inject.Inject
  */
 class GenreViewModel @Inject constructor(private val genreUseCase: GenreUseCase) : ViewModel() {
 
-    val genreList: MutableLiveData<List<Genre>> = MutableLiveData()
+    var genreList: MutableLiveData<List<Genre>>? = null
 
-    init {
+
+    fun getGenres() {
+
         genreUseCase.execute(null, object : SingleObserver<GenreResponse> {
             override fun onSuccess(t: GenreResponse) {
-                genreList.value = t.genreList
+                genreList?.value = t.genreList
             }
 
             override fun onSubscribe(d: Disposable) {
@@ -31,6 +33,16 @@ class GenreViewModel @Inject constructor(private val genreUseCase: GenreUseCase)
 
         })
     }
+
+
+    fun getGenreA(): MutableLiveData<List<Genre>>? {
+        if (genreList == null){
+            genreList = MutableLiveData()
+            getGenres()
+        }
+        return genreList
+    }
+
 
     override fun onCleared() {
         super.onCleared()

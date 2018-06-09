@@ -14,4 +14,5 @@ interface GenreView : LifecycleOwner, BaseView {
     fun showGenreList(genreList: List<Genre>)
 
     fun hideLoading()
+
 }

@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
-
+apply plugin: "androidx.navigation.safeargs"
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -42,6 +42,7 @@ android {
     if (project.hasProperty('debug')) {
         aaptOptions.cruncherEnabled = false
     }
+
 }
 
 dependencies {
@@ -57,7 +58,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$rootProject.support_version"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constrsintLayout_version"
     implementation "com.android.support:recyclerview-v7:$rootProject.support_version"
-//    kapt 'com.android.databinding:compiler:3.2.0-alpha10'
+//    implementation "androidx.core:core-ktx:$rootProject.ktx_version"
 
     // rxJava
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid_version"
@@ -79,6 +80,13 @@ dependencies {
     // architecture components
     implementation "android.arch.lifecycle:extensions:${rootProject.lifecycle_version}"
     kapt "android.arch.lifecycle:compiler:${rootProject.lifecycle_version}"
+    implementation "android.arch.navigation:navigation-fragment:$rootProject.nav_version"
+    implementation "android.arch.navigation:navigation-ui:$rootProject.nav_version"
+
+    // image
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+
 
     // tests
     testImplementation 'junit:junit:4.12'

@@ -3,6 +3,8 @@ package com.nizzle94.architecturecomponentmvp.ui.main.di
 import com.nizzle94.architecturecomponentmvp.di.scope.PerActivity
 import com.nizzle94.architecturecomponentmvp.ui.main.MainActivity
 import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreFragment
+import com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailFragment
+import com.nizzle94.architecturecomponentmvp.ui.main.movies.MoviesFragment
 import dagger.Subcomponent
 
 /**
@@ -10,13 +12,18 @@ import dagger.Subcomponent
  */
 @PerActivity
 @Subcomponent(
-        modules = [MainModule::class]
+    modules = [MainModule::class]
 )
 interface MainComponent {
 
     fun inject(mainActivity: MainActivity)
 
     fun inject(genreFragment: GenreFragment)
+
+    fun inject(moviesFragment: MoviesFragment)
+
+    fun inject(movieDetailFragment: MovieDetailFragment)
+
     @Subcomponent.Builder
     interface Builder {
         fun mainModule(module: MainModule): Builder

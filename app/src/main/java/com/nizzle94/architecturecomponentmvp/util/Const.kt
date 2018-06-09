@@ -6,5 +6,6 @@ package com.nizzle94.architecturecomponentmvp.util
 class Const {
     companion object {
         val GENRE_FRAGMENT = "GENRE_FRAGMENT"
+        val MOVIE_FRAGMENT = "MOVIE_FRAGMENT"
     }
 }

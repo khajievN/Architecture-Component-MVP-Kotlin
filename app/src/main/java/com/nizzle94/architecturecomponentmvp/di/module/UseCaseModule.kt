@@ -3,9 +3,11 @@ package com.nizzle94.architecturecomponentmvp.di.module
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
 import com.nizzle94.data.login.LoginRepository
 import com.nizzle94.data.main.movie.genre.GenreRepository
+import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
 import com.nizzle94.data.main.movie.movies.MoviesRepository
 import com.nizzle94.domain.login.LoginUseCase
 import com.nizzle94.domain.main.movie.genre.GenreUseCase
+import com.nizzle94.domain.main.movie.movie_detail.MovieDetailUseCase
 import com.nizzle94.domain.main.movie.movies.MoviesUseCase
 import dagger.Module
 import dagger.Provides
@@ -62,6 +64,17 @@ class UseCaseModule {
             moviesRepository: MoviesRepository
     ): MoviesUseCase {
         return MoviesUseCase(moviesRepository, ioScheduler, mainThreadScheduler)
+
+    }
+
+    @AppScope
+    @Provides
+    fun providesMovieDetailUseCase(
+            @Named("ioScheduler") ioScheduler: Scheduler,
+            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+            movieDetailRepository: MovieDetailRepository
+    ): MovieDetailUseCase {
+        return MovieDetailUseCase(movieDetailRepository, ioScheduler, mainThreadScheduler)
 
     }
 }

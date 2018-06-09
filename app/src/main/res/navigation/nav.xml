@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/genreFragment">
+
+    <fragment
+        android:id="@+id/genreFragment"
+        android:name="com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreFragment"
+        android:label="GenreFragment" >
+        <action
+            android:id="@+id/action_genreFragment_to_moviesFragment"
+            app:destination="@id/moviesFragment" />
+        <argument
+            android:name="genreId"
+            android:defaultValue="0"
+            app:type="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesFragment"
+        android:name="com.nizzle94.architecturecomponentmvp.ui.main.movies.MoviesFragment"
+        android:label="MoviesFragment" >
+        <action
+            android:id="@+id/action_moviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <argument
+            android:name="movieId"
+            android:defaultValue="0"
+            app:type="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailFragment"
+        android:label="MovieDetailFragment" />
+</navigation>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ArchitectureComponentMVP</string>
+
+    <string name="budget">%d $</string>
 </resources>

@@ -12,19 +12,19 @@ import javax.inject.Inject
  */
 class LoginPresenter @Inject constructor(private val loginViewModel: LoginViewModel) :
         BasePresenter<LoginController>() {
-    override fun initialise() {
-        loginViewModel.responseResult.observe(getView()!!, Observer<Result> {
-            when (it) {
-                Result.SUCCESS -> {
-                    getView()?.success()
-                }
-
-                Result.FAILURE -> {
-
-                }
-            }
-        })
-    }
+//    override fun initialise() {
+//        loginViewModel.responseResult.observe(getView()!!, Observer<Result> {
+//            when (it) {
+//                Result.SUCCESS -> {
+//                    getView()?.success()
+//                }
+//
+//                Result.FAILURE -> {
+//
+//                }
+//            }
+//        })
+//    }
 
     override fun disposeSubscriptions() {
         loginViewModel.clear()

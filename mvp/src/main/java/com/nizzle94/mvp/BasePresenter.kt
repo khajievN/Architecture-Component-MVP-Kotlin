@@ -6,7 +6,6 @@ package com.nizzle94.mvp
 abstract class BasePresenter<out V> {
     private var view: V? = null
 
-    abstract fun initialise()
     abstract fun disposeSubscriptions()
 
     fun getView(): V? = view

@@ -5,6 +5,7 @@ import com.nizzle94.data.Endpoint
 import com.nizzle94.data.MoviesEndpoint
 import com.nizzle94.data.login.LoginRepository
 import com.nizzle94.data.main.movie.genre.GenreRepository
+import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
 import com.nizzle94.data.main.movie.movies.MoviesRepository
 import dagger.Module
 import dagger.Provides
@@ -34,4 +35,9 @@ class RepoModule {
         return MoviesRepository(moviesEndpoint)
     }
 
+    @Provides
+    @AppScope
+    fun providesMovieDetailRepository(moviesEndpoint: MoviesEndpoint): MovieDetailRepository {
+        return MovieDetailRepository(moviesEndpoint)
+    }
 }

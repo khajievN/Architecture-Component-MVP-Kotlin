@@ -30,7 +30,7 @@ class GenreAdapter(private val context: Context,
     }
 
 
-    class ViewHolder(val genreItemBinding: GenreItemBinding) : RecyclerView.ViewHolder(genreItemBinding.root) {
+    class ViewHolder(private val genreItemBinding: GenreItemBinding) : RecyclerView.ViewHolder(genreItemBinding.root) {
         fun bind(genre: Genre, clickListener: (Genre) -> Unit) {
             genreItemBinding.vm = genre
             genreItemBinding.root.setOnClickListener {
