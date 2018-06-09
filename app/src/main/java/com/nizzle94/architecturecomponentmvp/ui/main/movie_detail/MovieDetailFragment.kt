@@ -27,6 +27,7 @@ class MovieDetailFragment : BaseFragment<MovieDetailView, MovieDetailPresenter>(
         const val MOVIE_ID = "movieId"
     }
 
+
     override fun getLayout(): Int = 0
 
     override fun initInjector() {
