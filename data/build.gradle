@@ -1,5 +1,9 @@
 apply plugin: 'com.android.library'
+
 apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
 
@@ -22,6 +26,10 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -47,8 +55,17 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:${rootProject.okhttp_version}"
     implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.okhttp_version}"
 
+    // architecture components
+    implementation "android.arch.lifecycle:extensions:${rootProject.lifecycle_version}"
+    kapt "android.arch.lifecycle:compiler:${rootProject.lifecycle_version}"
+    implementation "android.arch.persistence.room:runtime:$rootProject.room_version"
+    kapt "android.arch.persistence.room:compiler:$rootProject.room_version"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.room_version"
+
+
     // tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+//    implementation project(path: ':domain')
 }

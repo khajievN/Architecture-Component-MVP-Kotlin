@@ -3,6 +3,7 @@ package com.nizzle94.domain.main.movie.movies
 import com.nizzle94.data.main.movie.movies.MoviesRepository
 import com.nizzle94.data.main.movie.movies.MoviesResponse
 import com.nizzle94.domain.UseCase
+import com.nizzle94.domain.base.AbsRxSingleUseCase
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import javax.inject.Inject
@@ -12,7 +13,9 @@ import javax.inject.Inject
  */
 class MoviesUseCase @Inject constructor(private val moviesRepository: MoviesRepository,
                                         private val backgroundThread: Scheduler,
-                                        private val mainThread: Scheduler) : UseCase<MoviesResponse, Int>(backgroundThread, mainThread) {
-    override fun buildUseCaseSingle(params: Int?): Single<MoviesResponse> = moviesRepository.getMoviesList(params!!)
+                                        private val mainThread: Scheduler) : AbsRxSingleUseCase<MoviesResponse, Int>(backgroundThread, mainThread) {
+    override fun createSingle(params: Int?): Single<MoviesResponse> {
+        return moviesRepository.getMoviesList(params!!)
+    }
 
 }

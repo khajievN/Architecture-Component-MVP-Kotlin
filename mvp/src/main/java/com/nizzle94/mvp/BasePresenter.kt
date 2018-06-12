@@ -11,11 +11,11 @@ abstract class BasePresenter<out V> {
     fun getView(): V? = view
 
     @Suppress("UNCHECKED_CAST")
-    fun attachView(view: Any?) {
+    open fun attachView(view: Any?) {
         this.view = view as V?
     }
 
-    fun detachView() {
+    open fun detachView() {
         view = null
     }
 }

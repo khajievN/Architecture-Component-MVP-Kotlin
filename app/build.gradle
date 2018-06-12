@@ -5,7 +5,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
+
 apply plugin: "androidx.navigation.safeargs"
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -82,11 +84,17 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:${rootProject.lifecycle_version}"
     implementation "android.arch.navigation:navigation-fragment:$rootProject.nav_version"
     implementation "android.arch.navigation:navigation-ui:$rootProject.nav_version"
+    implementation "android.arch.persistence.room:runtime:$rootProject.room_version"
+    kapt "android.arch.persistence.room:compiler:$rootProject.room_version"
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.room_version"
 
     // image
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide_version"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide_version"
 
+    // butter knife
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnife_version"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnife_version"
 
     // tests
     testImplementation 'junit:junit:4.12'

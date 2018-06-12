@@ -1,51 +1,39 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.genre
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.nizzle94.data.main.movie.genre.Genre
 import com.nizzle94.data.main.movie.genre.GenreResponse
-import com.nizzle94.domain.main.movie.genre.GenreUseCase
-import io.reactivex.SingleObserver
-import io.reactivex.disposables.Disposable
-import javax.inject.Inject
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.
  */
-class GenreViewModel @Inject constructor(private val genreUseCase: GenreUseCase) : ViewModel() {
-
-    var genreList: MutableLiveData<List<Genre>>? = null
+class GenreViewModel : ViewModel() {
 
 
-    fun getGenres() {
+    var genreResponse: GenreResponse? = null
+    var genreList: ArrayList<Genre>? = ArrayList()
 
-        genreUseCase.execute(null, object : SingleObserver<GenreResponse> {
-            override fun onSuccess(t: GenreResponse) {
-                genreList?.value = t.genreList
-            }
 
-            override fun onSubscribe(d: Disposable) {
-            }
-
-            override fun onError(e: Throwable) {
-                e.printStackTrace()
-            }
-
-        })
+    fun retainModel(model: GenreResponse) {
+        genreResponse = model
+        genreList?.addAll(model.genreList)
     }
 
-
-    fun getGenreA(): MutableLiveData<List<Genre>>? {
-        if (genreList == null){
-            genreList = MutableLiveData()
-            getGenres()
-        }
-        return genreList
+    fun clearModel() {
+        genreResponse = null
+        genreList?.clear()
     }
 
-
-    override fun onCleared() {
-        super.onCleared()
-        genreUseCase.dispose()
+    fun clearAndRetainModel(model: GenreResponse) {
+        clearModel()
+        retainModel(model)
     }
+
+    inline fun loadModel(requestMostPopular: () -> Unit, populateRecyclerList: () -> Unit) {
+        if (genreResponse == null)
+            requestMostPopular()
+        else
+            populateRecyclerList()
+    }
+
 }

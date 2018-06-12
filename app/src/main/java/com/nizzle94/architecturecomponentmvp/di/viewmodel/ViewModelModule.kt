@@ -22,21 +22,21 @@ abstract class ViewModelModule {
     @ViewModelKey(MainViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 
-    @Binds
-    @IntoMap
-    @ViewModelKey(GenreViewModel::class)
-    abstract fun bindGenreViewModel(genreViewModel: GenreViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MoviesViewModel::class)
-    abstract fun bindMoviesViewModel(moviesViewModel: MoviesViewModel): ViewModel
-
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MovieDetailViewModel::class)
-    abstract fun bindMovieDetailViewModel(movieDetailViewModel: MovieDetailViewModel): ViewModel
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(GenreViewModel::class)
+//    abstract fun bindGenreViewModel(genreViewModel: GenreViewModel): ViewModel
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(MoviesViewModel::class)
+//    abstract fun bindMoviesViewModel(moviesViewModel: MoviesViewModel): ViewModel
+//
+//
+//    @Binds
+//    @IntoMap
+//    @ViewModelKey(MovieDetailViewModel::class)
+//    abstract fun bindMovieDetailViewModel(movieDetailViewModel: MovieDetailViewModel): ViewModel
 
 
     @Binds

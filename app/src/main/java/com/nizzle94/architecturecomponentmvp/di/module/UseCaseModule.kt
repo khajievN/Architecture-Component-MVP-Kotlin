@@ -37,9 +37,9 @@ class UseCaseModule {
     @AppScope
     @Provides
     fun providesLoginUseCase(
-            @Named("ioScheduler") ioScheduler: Scheduler,
-            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
-            loginRepository: LoginRepository
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        loginRepository: LoginRepository
     ): LoginUseCase {
         return LoginUseCase(loginRepository, ioScheduler, mainThreadScheduler)
 
@@ -47,21 +47,10 @@ class UseCaseModule {
 
     @AppScope
     @Provides
-    fun providesGenreUseCase(
-            @Named("ioScheduler") ioScheduler: Scheduler,
-            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
-            genreRepository: GenreRepository
-    ): GenreUseCase {
-        return GenreUseCase(genreRepository, ioScheduler, mainThreadScheduler)
-
-    }
-
-    @AppScope
-    @Provides
     fun providesMoviesUseCase(
-            @Named("ioScheduler") ioScheduler: Scheduler,
-            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
-            moviesRepository: MoviesRepository
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        moviesRepository: MoviesRepository
     ): MoviesUseCase {
         return MoviesUseCase(moviesRepository, ioScheduler, mainThreadScheduler)
 
@@ -70,11 +59,23 @@ class UseCaseModule {
     @AppScope
     @Provides
     fun providesMovieDetailUseCase(
-            @Named("ioScheduler") ioScheduler: Scheduler,
-            @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
-            movieDetailRepository: MovieDetailRepository
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        movieDetailRepository: MovieDetailRepository
     ): MovieDetailUseCase {
         return MovieDetailUseCase(movieDetailRepository, ioScheduler, mainThreadScheduler)
+
+    }
+
+
+    @AppScope
+    @Provides
+    fun providesGenreUseCase(
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        genreRepository: GenreRepository
+    ): GenreUseCase {
+        return GenreUseCase(genreRepository, ioScheduler, mainThreadScheduler)
 
     }
 }

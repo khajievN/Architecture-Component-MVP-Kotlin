@@ -4,6 +4,9 @@ import android.support.annotation.AnimRes
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.
@@ -52,4 +55,8 @@ fun AppCompatActivity.addFragmentSafely(fragment: Fragment,
         ft.commitAllowingStateLoss()
     }
 
+}
+
+fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
+    return LayoutInflater.from(context).inflate(layoutId, this, attachToRoot)
 }

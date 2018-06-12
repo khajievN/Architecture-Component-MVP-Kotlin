@@ -1,12 +1,13 @@
 package com.nizzle94.data.main.movie.movie_detail
 
-import com.nizzle94.data.MoviesEndpoint
+import com.nizzle94.data.service.MoviesEndpoint
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
  * Created by Khajiev Nizomjon on 09/06/2018.
  */
-class MovieDetailRepository @Inject constructor(private val endpoint: MoviesEndpoint) {
+interface MovieDetailRepository {
 
-    fun getMovieDetail(movieId: Int) = endpoint.getMovieDetail(movieId)
+    fun getMovieDetail(movieId: Int): Single<MovieDetailResponse>
 }

@@ -4,12 +4,8 @@ import com.nizzle94.architecturecomponentmvp.di.scope.PerActivity
 import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelFactory
 import com.nizzle94.architecturecomponentmvp.ui.main.MainPresenter
 import com.nizzle94.architecturecomponentmvp.ui.main.MainViewModel
-import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenrePresenter
-import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreViewModel
-import com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailPresenter
 import com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailViewModel
-import com.nizzle94.architecturecomponentmvp.ui.main.movies.MoviesPresenter
-import com.nizzle94.architecturecomponentmvp.ui.main.movies.MoviesViewModel
+import com.nizzle94.mvp.movie_detail.MovieDetailPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -24,22 +20,6 @@ class MainModule {
     fun providesMainPresenter(mainViewModel: MainViewModel): MainPresenter =
             MainPresenter(mainViewModel)
 
-
-    @Provides
-    @PerActivity
-    fun providesGenrePresenter(genreViewModel: GenreViewModel, viewModelFactory: ViewModelFactory): GenrePresenter =
-            GenrePresenter(genreViewModel, viewModelFactory)
-
-
-    @Provides
-    @PerActivity
-    fun providesMoviesPresenter(moviesViewModel: MoviesViewModel, viewModelFactory: ViewModelFactory): MoviesPresenter =
-            MoviesPresenter(moviesViewModel, viewModelFactory)
-
-    @Provides
-    @PerActivity
-    fun providesMovieDetailPresenter(movieDetailViewModel: MovieDetailViewModel, viewModelFactory: ViewModelFactory): MovieDetailPresenter =
-            MovieDetailPresenter(movieDetailViewModel, viewModelFactory)
 
 
 }

@@ -1,8 +1,10 @@
-package com.nizzle94.data
+package com.nizzle94.data.service
 
 import com.nizzle94.data.main.movie.genre.GenreResponse
 import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
 import com.nizzle94.data.main.movie.movies.MoviesResponse
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -11,20 +11,20 @@ import io.reactivex.disposables.Disposable
  * Created by Khajiev Nizomjon on 03/06/2018.
  */
 abstract class UseCase<T, in Params>(
-        private val backgroundThread: Scheduler,
-        private val mainThread: Scheduler
+    private val backgroundThread: Scheduler,
+    private val mainThread: Scheduler
 ) {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
 
-    abstract fun buildUseCaseSingle(params: Params?): Single<T>
+    abstract fun buildUseCaseSingle(params: Params? = null): Single<T>
 
 
     @SuppressLint("CheckResult")
     fun execute(params: Params? = null, observer: SingleObserver<T>) {
         val observable: Single<T> = this.buildUseCaseSingle(params)
-                .subscribeOn(backgroundThread)
-                .observeOn(mainThread)
+            .subscribeOn(backgroundThread)
+            .observeOn(mainThread)
         (observable.subscribeWith(observer) as? Disposable)?.let {
             disposables.add(it)
         }
@@ -35,8 +35,6 @@ abstract class UseCase<T, in Params>(
             disposables.dispose()
         }
     }
-
-
 
 
 }

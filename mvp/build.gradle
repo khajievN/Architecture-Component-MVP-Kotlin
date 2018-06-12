@@ -29,6 +29,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlin_version"
 
@@ -37,9 +39,14 @@ dependencies {
 
     // dagger
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
-// architecture components
+
+    // architecture components
     implementation "android.arch.lifecycle:extensions:${rootProject.lifecycle_version}"
     kapt "android.arch.lifecycle:compiler:${rootProject.lifecycle_version}"
+
+    // rxJava
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava_version"
 
     // tests
     testImplementation 'junit:junit:4.12'

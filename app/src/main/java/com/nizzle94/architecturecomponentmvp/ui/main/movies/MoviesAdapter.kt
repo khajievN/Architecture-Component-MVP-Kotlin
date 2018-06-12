@@ -13,18 +13,28 @@ import com.nizzle94.data.main.movie.movies.Movie
  * Created by Khajiev Nizomjon on 07/06/2018.
  */
 class MoviesAdapter(private val context: Context,
-                    private val movieList: List<Movie>,
                     private val clickListener: (Movie) -> Unit) : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+
+    private var items: ArrayList<Movie>? = ArrayList()
+
+    fun addItems(movieList: ArrayList<Movie>) {
+        if (items != null) {
+            items!!.addAll(movieList)
+        } else {
+            items = movieList
+        }
+        notifyDataSetChanged()
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val binding: MovieItemBinding = DataBindingUtil.inflate(inflater, R.layout.movie_item, parent, false)
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = movieList.size
+    override fun getItemCount(): Int = items!!.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movieList[position], clickListener)
+        holder.bind(items!![position], clickListener)
     }
 
 

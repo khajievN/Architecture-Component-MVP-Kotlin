@@ -8,7 +8,10 @@ import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelFactory
 import com.nizzle94.architecturecomponentmvp.ui.login.di.LoginComponent
 import com.nizzle94.architecturecomponentmvp.ui.main.di.MainComponent
 import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelModule
-import com.nizzle94.data.Endpoint
+import com.nizzle94.data.main.movie.genre.GenreRepository
+import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
+import com.nizzle94.data.main.movie.movies.MoviesRepository
+import com.nizzle94.data.service.Endpoint
 import dagger.Component
 
 /**
@@ -29,4 +32,10 @@ interface AppComponent {
     fun mainBuilder(): MainComponent.Builder
 
     fun loginBuilder(): LoginComponent.Builder
+
+    fun getGenreRepository(): GenreRepository
+
+    fun getMoviesRepository(): MoviesRepository
+
+    fun getMovieDetailRepository(): MovieDetailRepository
 }

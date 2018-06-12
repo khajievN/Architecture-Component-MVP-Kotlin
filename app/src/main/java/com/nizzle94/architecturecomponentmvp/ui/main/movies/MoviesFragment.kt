@@ -5,12 +5,22 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
+import com.nizzle94.architecturecomponentmvp.R.id.progressBar
+import com.nizzle94.architecturecomponentmvp.R.id.recyclerView
+import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.MainFragmentController
+import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreAdapter
+import com.nizzle94.data.main.movie.genre.Genre
 import com.nizzle94.data.main.movie.movies.Movie
+import com.nizzle94.data.main.movie.movies.MoviesResponse
 import com.nizzle94.mvp.BaseFragment
+import com.nizzle94.mvp.movies.MoviePresenter
+import com.nizzle94.mvp.movies.MoviesView
 import kotlinx.android.synthetic.main.fragment_movies.*
 import java.io.Serializable
 import javax.inject.Inject
@@ -18,7 +28,48 @@ import javax.inject.Inject
 /**
  * Created by Khajiev Nizomjon on 07/06/2018.
  */
-class MoviesFragment : BaseFragment<MoviesView, MoviesPresenter>(), MoviesView {
+class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
+    override val viewModelClass: Class<MoviesViewModel>
+        get() = MoviesViewModel::class.java
+
+    override fun getLayoutRes(): Int = R.layout.fragment_movies
+
+    override fun loadViewModel() {
+        viewModel.loadModel({ moviesPresenter.requestMoviesList(genreId) },
+            {
+                moviesAdapter.addItems(viewModel.movieList as ArrayList<Movie>)
+            })
+    }
+
+    override fun populateRecyclerList(moviesResponse: MoviesResponse?) {
+        moviesResponse?.let { viewModel.retainModel(it) }
+        moviesAdapter.addItems(viewModel.movieList!!)
+    }
+
+    override fun initSwipeRefreshLayout() {
+    }
+
+    override fun initRecyclerAdapter() {
+        moviesAdapter = MoviesAdapter(context!!, {
+            mainFragmentController.openMovieDetail(it.id)
+        })
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = moviesAdapter
+        }
+    }
+
+    override fun showError() {
+    }
+
+    override fun showProgressbar() {
+        progressBar.visibility = View.VISIBLE
+
+    }
+
+    override fun hideProgressbar() {
+        progressBar.visibility = View.GONE
+    }
 
     companion object {
 
@@ -28,34 +79,16 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesPresenter>(), MoviesView {
     }
 
 
-    override fun getLayout(): Int = R.layout.fragment_movies
-
-    override fun initInjector() {
+    private fun initInjector() {
         (activity?.application as App).applicationComponent
             .mainBuilder().build().inject(this)
     }
 
-    override fun getMvpView(): MoviesView = this
-
-    override fun showLoading() {
-        progressBar.visibility = View.VISIBLE
-    }
-
-    override fun showMoviesList(moviesList: List<Movie>) {
-        val adapter = MoviesAdapter(context!!, moviesList, {
-            mainFragmentController.openMovieDetail(it.id)
-        })
-        recyclerView.adapter = adapter
-
-    }
-
-    override fun hideLoading() {
-        progressBar.visibility = View.GONE
-    }
-
 
     @Inject
-    lateinit var moviesPresenter: MoviesPresenter
+    lateinit var moviesPresenter: MoviePresenter
+    private lateinit var moviesAdapter: MoviesAdapter
+
     lateinit var mainFragmentController: MainFragmentController
     private var genreId: Int = 0
 
@@ -72,12 +105,25 @@ class MoviesFragment : BaseFragment<MoviesView, MoviesPresenter>(), MoviesView {
             e.printStackTrace()
         }
     }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View? = super.onCreateView(inflater, container, savedInstanceState)
+        initInjector()
+        return view
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = LinearLayoutManager(context!!) as RecyclerView.LayoutManager?
-        moviesPresenter.init(this, genreId)
+        moviesPresenter.attachView(this)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        moviesPresenter.detachView()
+    }
 
 }

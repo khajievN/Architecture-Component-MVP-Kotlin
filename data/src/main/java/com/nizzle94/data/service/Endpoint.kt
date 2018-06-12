@@ -1,4 +1,4 @@
-package com.nizzle94.data
+package com.nizzle94.data.service
 
 import com.nizzle94.data.login.LoginBody
 import com.nizzle94.data.login.UserResponse

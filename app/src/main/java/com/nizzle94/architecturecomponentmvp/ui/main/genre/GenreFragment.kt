@@ -1,58 +1,86 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.genre
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LifecycleRegistry
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ProgressBar
+import butterknife.BindView
 import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
-import com.nizzle94.architecturecomponentmvp.di.viewmodel.ViewModelFactory
+import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.MainFragmentController
 import com.nizzle94.data.main.movie.genre.Genre
-import com.nizzle94.mvp.BaseFragment
-import kotlinx.android.synthetic.main.fragment_genre.*
+import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.mvp.genres.GenresPresenter
+import com.nizzle94.mvp.genres.GenresView
 import javax.inject.Inject
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.
  */
-class GenreFragment : BaseFragment<GenreView, GenrePresenter>(), GenreView {
 
-    override fun getLayout(): Int = R.layout.fragment_genre
-
-    override fun initInjector() {
-        (activity?.application as App).applicationComponent
-                .mainBuilder().build().inject(this)
-    }
-
-    override fun getMvpView(): GenreView = this
-
-    override fun showLoading() {
+class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
+    override fun showProgressbar() {
         progressBar.visibility = View.VISIBLE
     }
 
-    override fun showGenreList(genreList: List<Genre>) {
-        val adapter = GenreAdapter(context!!, genreList, {
-            mainFragmentController.openMoviesByGenre(it.id)
-        })
-        recyclerView.adapter = adapter
-    }
-
-    override fun hideLoading() {
+    override fun hideProgressbar() {
         progressBar.visibility = View.GONE
     }
 
+    override fun loadViewModel() {
+        viewModel.loadModel({ genrePresenter.requestGenreList() },
+            {
+                genreAdapter.addItems(genreList = viewModel.genreList as ArrayList<Genre>)
+            })
+    }
+
+    override fun populateRecyclerList(genreResponse: GenreResponse?) {
+        genreResponse?.let { viewModel.retainModel(it) }
+        genreAdapter.addItems(genreList = viewModel.genreList!!)
+    }
+
+    override fun initSwipeRefreshLayout() {
+    }
+
+    override fun initRecyclerAdapter() {
+        genreAdapter = GenreAdapter(context!!, {
+            mainFragmentController.openMoviesByGenre(it.id)
+        })
+        recyclerView.apply {
+            layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+            adapter = genreAdapter
+        }
+    }
+
+    override fun showError() {
+    }
+
+    override val viewModelClass: Class<GenreViewModel>
+        get() = GenreViewModel::class.java
+
+    override fun getLayoutRes(): Int = R.layout.fragment_genre
+
+    private lateinit var genreAdapter: GenreAdapter
+
+    private fun initInjector() {
+        (activity?.application as App).applicationComponent
+            .mainBuilder().build().inject(this)
+    }
 
     @Inject
-    lateinit var genrePresenter: GenrePresenter
+    lateinit var genrePresenter: GenresPresenter
     lateinit var mainFragmentController: MainFragmentController
 
+    @BindView(R.id.recyclerView)
+    lateinit var recyclerView: RecyclerView
+    @BindView(R.id.progressBar)
+    lateinit var progressBar: ProgressBar
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -63,12 +91,25 @@ class GenreFragment : BaseFragment<GenreView, GenrePresenter>(), GenreView {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View? = super.onCreateView(inflater, container, savedInstanceState)
+        initInjector()
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.layoutManager = GridLayoutManager(context!!, 2)
-        genrePresenter.init(this)
-
+        genrePresenter.attachView(this)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        genrePresenter.detachView()
+    }
+
 
 }
