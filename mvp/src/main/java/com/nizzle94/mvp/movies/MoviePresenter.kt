@@ -1,6 +1,6 @@
 package com.nizzle94.mvp.movies
 
-import com.nizzle94.data.main.movie.movies.MoviesResponse
+import com.nizzle94.data.reponse.MoviesResponse
 import com.nizzle94.domain.base.DefaultSingleObserver
 import com.nizzle94.domain.main.movie.movies.MoviesUseCase
 import com.nizzle94.mvp.BasePresenter

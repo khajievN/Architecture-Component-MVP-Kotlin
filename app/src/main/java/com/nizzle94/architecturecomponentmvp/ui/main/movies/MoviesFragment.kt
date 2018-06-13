@@ -2,27 +2,19 @@ package com.nizzle94.architecturecomponentmvp.ui.main.movies
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
-import com.nizzle94.architecturecomponentmvp.R.id.progressBar
-import com.nizzle94.architecturecomponentmvp.R.id.recyclerView
 import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.MainFragmentController
-import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreAdapter
-import com.nizzle94.data.main.movie.genre.Genre
-import com.nizzle94.data.main.movie.movies.Movie
-import com.nizzle94.data.main.movie.movies.MoviesResponse
-import com.nizzle94.mvp.BaseFragment
+import com.nizzle94.data.entity.Movie
+import com.nizzle94.data.reponse.MoviesResponse
 import com.nizzle94.mvp.movies.MoviePresenter
 import com.nizzle94.mvp.movies.MoviesView
 import kotlinx.android.synthetic.main.fragment_movies.*
-import java.io.Serializable
 import javax.inject.Inject
 
 /**

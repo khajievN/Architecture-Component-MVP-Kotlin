@@ -14,8 +14,8 @@ import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
 import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.MainFragmentController
-import com.nizzle94.data.main.movie.genre.Genre
-import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.data.entity.Genre
+import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.mvp.genres.GenresPresenter
 import com.nizzle94.mvp.genres.GenresView
 import javax.inject.Inject

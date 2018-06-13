@@ -3,7 +3,7 @@ package com.nizzle94.architecturecomponentmvp.ui.login
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.nizzle94.data.login.LoginBody
-import com.nizzle94.data.login.UserResponse
+import com.nizzle94.data.reponse.UserResponse
 import com.nizzle94.data.reponse.BaseResponse
 import com.nizzle94.domain.login.LoginUseCase
 import io.reactivex.SingleObserver

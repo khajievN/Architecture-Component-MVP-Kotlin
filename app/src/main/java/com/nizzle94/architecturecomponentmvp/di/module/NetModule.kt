@@ -4,8 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.nizzle94.architecturecomponentmvp.BuildConfig
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
-import com.nizzle94.data.service.Endpoint
-import com.nizzle94.data.service.MoviesEndpoint
+import com.nizzle94.data.service.api.Endpoint
+import com.nizzle94.data.service.api.MoviesEndpoint
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

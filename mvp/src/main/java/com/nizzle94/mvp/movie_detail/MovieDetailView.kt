@@ -1,7 +1,6 @@
 package com.nizzle94.mvp.movie_detail
 
-import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
-import com.nizzle94.data.main.movie.movies.MoviesResponse
+import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.mvp.BaseView
 
 /**

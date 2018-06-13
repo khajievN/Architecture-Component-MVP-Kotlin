@@ -1,7 +1,7 @@
 package com.nizzle94.domain.main.movie.genre
 
 import com.nizzle94.data.main.movie.genre.GenreRepository
-import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.domain.base.AbsRxSingleUseCase
 import io.reactivex.Scheduler
 import io.reactivex.Single

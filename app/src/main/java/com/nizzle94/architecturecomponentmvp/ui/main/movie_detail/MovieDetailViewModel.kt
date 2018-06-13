@@ -1,7 +1,7 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.movie_detail
 
 import android.arch.lifecycle.ViewModel
-import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
+import com.nizzle94.data.reponse.MovieDetailResponse
 
 /**
  * Created by Khajiev Nizomjon on 09/06/2018.

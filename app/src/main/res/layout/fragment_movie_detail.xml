@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse" />
+            type="com.nizzle94.data.reponse.MovieDetailResponse" />
 
     </data>
 

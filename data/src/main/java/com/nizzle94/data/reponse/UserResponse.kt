@@ -1,4 +1,4 @@
-package com.nizzle94.data.login
+package com.nizzle94.data.reponse
 
 /**
  * Created by Khajiev Nizomjon on 05/06/2018.

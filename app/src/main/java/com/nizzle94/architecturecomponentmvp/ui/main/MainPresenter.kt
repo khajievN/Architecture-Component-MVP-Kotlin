@@ -1,7 +1,5 @@
 package com.nizzle94.architecturecomponentmvp.ui.main
 
-import android.arch.lifecycle.Observer
-import com.nizzle94.data.main.movie.genre.Genre
 import com.nizzle94.mvp.BasePresenter
 import javax.inject.Inject
 

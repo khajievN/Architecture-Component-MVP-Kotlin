@@ -2,7 +2,7 @@ package com.nizzle94.architecturecomponentmvp.ui.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.nizzle94.data.main.movie.genre.Genre
+import com.nizzle94.data.entity.Genre
 import javax.inject.Inject
 
 /**

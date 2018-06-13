@@ -2,7 +2,7 @@ package com.nizzle94.domain.login
 
 import com.nizzle94.data.login.LoginBody
 import com.nizzle94.data.login.LoginRepository
-import com.nizzle94.data.login.UserResponse
+import com.nizzle94.data.reponse.UserResponse
 import com.nizzle94.data.reponse.BaseResponse
 import com.nizzle94.domain.UseCase
 import io.reactivex.Scheduler

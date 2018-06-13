@@ -1,8 +1,8 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.genre
 
 import android.arch.lifecycle.ViewModel
-import com.nizzle94.data.main.movie.genre.Genre
-import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.data.entity.Genre
+import com.nizzle94.data.reponse.GenreResponse
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.

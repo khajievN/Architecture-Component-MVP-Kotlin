@@ -1,6 +1,6 @@
 package com.nizzle94.data.main.movie.genre
 
-import com.nizzle94.data.main.movie.genre.GenreResponse
+import com.nizzle94.data.reponse.GenreResponse
 import io.reactivex.Single
 
 /**

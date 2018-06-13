@@ -1,7 +1,6 @@
 package com.nizzle94.mvp.movies
 
-import com.nizzle94.data.main.movie.genre.GenreResponse
-import com.nizzle94.data.main.movie.movies.MoviesResponse
+import com.nizzle94.data.reponse.MoviesResponse
 import com.nizzle94.mvp.BaseView
 
 /**

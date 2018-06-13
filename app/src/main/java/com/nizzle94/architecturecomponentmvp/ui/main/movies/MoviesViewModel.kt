@@ -1,8 +1,8 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.movies
 
 import android.arch.lifecycle.ViewModel
-import com.nizzle94.data.main.movie.movies.Movie
-import com.nizzle94.data.main.movie.movies.MoviesResponse
+import com.nizzle94.data.entity.Movie
+import com.nizzle94.data.reponse.MoviesResponse
 
 /**
  * Created by Khajiev Nizomjon on 07/06/2018.

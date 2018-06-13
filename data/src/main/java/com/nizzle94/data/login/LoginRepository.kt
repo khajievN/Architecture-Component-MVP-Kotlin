@@ -1,6 +1,6 @@
 package com.nizzle94.data.login
 
-import com.nizzle94.data.service.Endpoint
+import com.nizzle94.data.service.api.Endpoint
 import javax.inject.Inject
 
 /**

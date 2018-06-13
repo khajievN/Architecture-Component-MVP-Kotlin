@@ -1,8 +1,7 @@
 package com.nizzle94.domain.main.movie.movie_detail
 
 import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
-import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
-import com.nizzle94.domain.UseCase
+import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.domain.base.AbsRxSingleUseCase
 import io.reactivex.Scheduler
 import io.reactivex.Single

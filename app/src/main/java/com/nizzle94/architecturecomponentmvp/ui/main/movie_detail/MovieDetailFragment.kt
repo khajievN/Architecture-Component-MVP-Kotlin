@@ -1,6 +1,5 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.movie_detail
 
-import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +9,7 @@ import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
 import com.nizzle94.architecturecomponentmvp.databinding.FragmentMovieDetailBinding
 import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
-import com.nizzle94.architecturecomponentmvp.ui.main.MainFragmentController
-import com.nizzle94.data.main.movie.genre.Genre
-import com.nizzle94.data.main.movie.movie_detail.MovieDetailResponse
-import com.nizzle94.mvp.BaseFragment
+import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.mvp.movie_detail.MovieDetailPresenter
 import com.nizzle94.mvp.movie_detail.MovieDetailView
 import javax.inject.Inject

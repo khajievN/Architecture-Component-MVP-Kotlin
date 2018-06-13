@@ -1,7 +1,7 @@
 package com.nizzle94.architecturecomponentmvp.di.module
 
 import com.nizzle94.architecturecomponentmvp.di.scope.AppScope
-import com.nizzle94.data.service.Endpoint
+import com.nizzle94.data.service.api.Endpoint
 import com.nizzle94.data.login.LoginRepository
 import com.nizzle94.data.main.movie.genre.GenreDataRepository
 import com.nizzle94.data.main.movie.genre.GenreRepository

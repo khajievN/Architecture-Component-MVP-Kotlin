@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nizzle94.architecturecomponentmvp.R
 import com.nizzle94.architecturecomponentmvp.databinding.MovieItemBinding
-import com.nizzle94.data.main.movie.movies.Movie
+import com.nizzle94.data.entity.Movie
 
 /**
  * Created by Khajiev Nizomjon on 07/06/2018.

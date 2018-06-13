@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.nizzle94.architecturecomponentmvp.R
 import com.nizzle94.architecturecomponentmvp.databinding.GenreItemBinding
-import com.nizzle94.data.main.movie.genre.Genre
+import com.nizzle94.data.entity.Genre
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.

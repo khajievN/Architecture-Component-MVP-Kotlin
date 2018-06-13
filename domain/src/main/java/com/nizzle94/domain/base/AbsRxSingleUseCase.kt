@@ -27,9 +27,10 @@ abstract class AbsRxSingleUseCase<T, in Params> protected constructor(
 
     fun dispose() {
         if (!disposables.isDisposed) {
-            disposables.dispose()
+            disposables.clear()
         }
     }
+
 
     private fun addDisposable(disposable: Disposable) {
         disposables.add(disposable)

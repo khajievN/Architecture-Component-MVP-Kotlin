@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.nizzle94.data.main.movie.movies.Movie" />
+            type="com.nizzle94.data.entity.Movie" />
 
     </data>
 

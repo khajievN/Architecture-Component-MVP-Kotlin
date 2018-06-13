@@ -1,5 +1,6 @@
 package com.nizzle94.architecturecomponentmvp.ui.main.di
 
+import com.nizzle94.architecturecomponentmvp.di.module.CacheModule
 import com.nizzle94.architecturecomponentmvp.di.scope.PerActivity
 import com.nizzle94.architecturecomponentmvp.ui.main.MainActivity
 import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreFragment

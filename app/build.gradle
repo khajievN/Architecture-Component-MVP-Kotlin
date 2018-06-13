@@ -65,6 +65,8 @@ dependencies {
     // rxJava
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava_version"
+    implementation "com.github.VictorAlbertos.RxCache:runtime:$rootProject.rxCache_version"
+    implementation "com.github.VictorAlbertos.Jolyglot:gson:$rootProject.jolyglotGson_version"
 
     // dagger
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
@@ -97,7 +99,7 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnife_version"
 
     // tests
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "junit:junit:$rootProject.junit_version"
+    testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInline_version"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:$rootProject.mockitoKotlin_version"
 }
