@@ -13,14 +13,15 @@ import com.nizzle94.data.entity.Genre
  * Created by Khajiev Nizomjon on 06/06/2018.
  */
 class GenreAdapter(
-    private val context: Context,
-    private val itemClickListener: (Genre) -> Unit
+        private val context: Context,
+        private val itemClickListener: (Genre) -> Unit
 ) : RecyclerView.Adapter<GenreAdapter.ViewHolder>() {
 
     private var items: ArrayList<Genre>? = ArrayList()
 
     fun addItems(genreList: ArrayList<Genre>) {
         if (items != null) {
+            items!!.clear()
             items!!.addAll(genreList)
         } else {
             items = genreList
@@ -32,7 +33,7 @@ class GenreAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         val binding: GenreItemBinding =
-            DataBindingUtil.inflate(layoutInflater, R.layout.genre_item, parent, false)
+                DataBindingUtil.inflate(layoutInflater, R.layout.genre_item, parent, false)
         return ViewHolder(binding)
     }
 
@@ -44,7 +45,7 @@ class GenreAdapter(
 
 
     class ViewHolder(private val genreItemBinding: GenreItemBinding) :
-        RecyclerView.ViewHolder(genreItemBinding.root) {
+            RecyclerView.ViewHolder(genreItemBinding.root) {
         fun bind(genre: Genre, clickListener: (Genre) -> Unit) {
             genreItemBinding.vm = genre
             genreItemBinding.root.setOnClickListener {

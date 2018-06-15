@@ -29,6 +29,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="loginActivity">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-404" />
+                            <option name="y" value="-578" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="movieDetailFragment">
                     <value>
                       <LayoutPositions>
@@ -46,8 +58,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="82" />
-                            <option name="y" value="-164" />
+                            <option name="x" value="89" />
+                            <option name="y" value="-348" />
                           </Point>
                         </option>
                         <option name="myPositions">

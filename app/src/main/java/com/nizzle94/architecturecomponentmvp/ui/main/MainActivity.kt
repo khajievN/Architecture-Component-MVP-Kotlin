@@ -39,11 +39,7 @@ class MainActivity : BaseActivity<BaseView, MainPresenter>(), MainView, MainFrag
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
         controller = Navigation.findNavController(this, R.id.nav_host_fragment)
-
     }
 
 

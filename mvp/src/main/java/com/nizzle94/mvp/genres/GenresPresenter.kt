@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Created by Khajiev Nizomjon on 12/06/2018.
  */
 class GenresPresenter @Inject constructor(private val genreUseCase: GenreUseCase) :
-    BasePresenter<GenresView>() {
+        BasePresenter<GenresView>() {
     override fun disposeSubscriptions() {
 
     }
@@ -32,6 +32,10 @@ class GenresPresenter @Inject constructor(private val genreUseCase: GenreUseCase
         super.detachView()
         genreUseCase.dispose()
 
+    }
+
+    fun onRefresh() {
+        requestGenreList()
     }
 
     inner class GenreListObserver : DefaultSingleObserver<GenreResponse>() {

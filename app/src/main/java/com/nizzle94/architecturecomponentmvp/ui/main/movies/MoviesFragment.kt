@@ -2,10 +2,14 @@ package com.nizzle94.architecturecomponentmvp.ui.main.movies
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import butterknife.BindView
 import com.nizzle94.architecturecomponentmvp.App
 import com.nizzle94.architecturecomponentmvp.R
 import com.nizzle94.architecturecomponentmvp.ui.base.BaseViewModelFragment
@@ -20,7 +24,12 @@ import javax.inject.Inject
 /**
  * Created by Khajiev Nizomjon on 07/06/2018.
  */
-class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
+class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView, SwipeRefreshLayout.OnRefreshListener {
+    override fun onRefresh() {
+        viewModel.clearModel()
+        moviesPresenter.requestMoviesList(genreId)
+    }
+
     override val viewModelClass: Class<MoviesViewModel>
         get() = MoviesViewModel::class.java
 
@@ -28,9 +37,9 @@ class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
 
     override fun loadViewModel() {
         viewModel.loadModel({ moviesPresenter.requestMoviesList(genreId) },
-            {
-                moviesAdapter.addItems(viewModel.movieList as ArrayList<Movie>)
-            })
+                {
+                    moviesAdapter.addItems(viewModel.movieList as ArrayList<Movie>)
+                })
     }
 
     override fun populateRecyclerList(moviesResponse: MoviesResponse?) {
@@ -49,18 +58,18 @@ class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = moviesAdapter
         }
+        swipeRefreshLayout.setOnRefreshListener(this)
     }
 
     override fun showError() {
     }
 
     override fun showProgressbar() {
-        progressBar.visibility = View.VISIBLE
-
+        swipeRefreshLayout.isRefreshing = true
     }
 
     override fun hideProgressbar() {
-        progressBar.visibility = View.GONE
+        swipeRefreshLayout.isRefreshing = false
     }
 
     companion object {
@@ -73,13 +82,20 @@ class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
 
     private fun initInjector() {
         (activity?.application as App).applicationComponent
-            .mainBuilder().build().inject(this)
+                .mainBuilder().build().inject(this)
     }
 
 
     @Inject
     lateinit var moviesPresenter: MoviePresenter
     private lateinit var moviesAdapter: MoviesAdapter
+
+    @BindView(R.id.recyclerView)
+    lateinit var recyclerView: RecyclerView
+    @BindView(R.id.progressBar)
+    lateinit var progressBar: ProgressBar
+    @BindView(R.id.swipeRefreshLayout)
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     lateinit var mainFragmentController: MainFragmentController
     private var genreId: Int = 0
@@ -97,10 +113,11 @@ class MoviesFragment : BaseViewModelFragment<MoviesViewModel>(), MoviesView {
             e.printStackTrace()
         }
     }
+
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view: View? = super.onCreateView(inflater, container, savedInstanceState)
         initInjector()

@@ -2,6 +2,7 @@ package com.nizzle94.architecturecomponentmvp.ui.main.genre
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -18,26 +19,33 @@ import com.nizzle94.data.entity.Genre
 import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.mvp.genres.GenresPresenter
 import com.nizzle94.mvp.genres.GenresView
+import kotlinx.android.synthetic.main.fragment_genre.*
 import javax.inject.Inject
 
 /**
  * Created by Khajiev Nizomjon on 06/06/2018.
  */
 
-class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
+class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView, SwipeRefreshLayout.OnRefreshListener {
+
+    override fun onRefresh() {
+        viewModel.clearModel()
+        genrePresenter.onRefresh()
+    }
+
     override fun showProgressbar() {
-        progressBar.visibility = View.VISIBLE
+        swipeRefreshLayout.isRefreshing = true
     }
 
     override fun hideProgressbar() {
-        progressBar.visibility = View.GONE
+        swipeRefreshLayout.isRefreshing = false
     }
 
     override fun loadViewModel() {
         viewModel.loadModel({ genrePresenter.requestGenreList() },
-            {
-                genreAdapter.addItems(genreList = viewModel.genreList as ArrayList<Genre>)
-            })
+                {
+                    genreAdapter.addItems(genreList = viewModel.genreList as ArrayList<Genre>)
+                })
     }
 
     override fun populateRecyclerList(genreResponse: GenreResponse?) {
@@ -56,6 +64,7 @@ class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
             layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
             adapter = genreAdapter
         }
+        swipeRefreshLayout.setOnRefreshListener(this)
     }
 
     override fun showError() {
@@ -70,7 +79,7 @@ class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
 
     private fun initInjector() {
         (activity?.application as App).applicationComponent
-            .mainBuilder().build().inject(this)
+                .mainBuilder().build().inject(this)
     }
 
     @Inject
@@ -81,6 +90,8 @@ class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
     lateinit var recyclerView: RecyclerView
     @BindView(R.id.progressBar)
     lateinit var progressBar: ProgressBar
+    @BindView(R.id.swipeRefreshLayout)
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -92,9 +103,9 @@ class GenreFragment : BaseViewModelFragment<GenreViewModel>(), GenresView {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view: View? = super.onCreateView(inflater, container, savedInstanceState)
         initInjector()

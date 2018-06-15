@@ -19,12 +19,14 @@ class MoviesAdapter(private val context: Context,
 
     fun addItems(movieList: ArrayList<Movie>) {
         if (items != null) {
+            items!!.clear()
             items!!.addAll(movieList)
         } else {
             items = movieList
         }
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
         val binding: MovieItemBinding = DataBindingUtil.inflate(inflater, R.layout.movie_item, parent, false)
