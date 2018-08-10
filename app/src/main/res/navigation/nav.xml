@@ -14,6 +14,9 @@
             android:name="genreId"
             android:defaultValue="0"
             app:type="integer" />
+        <action
+            android:id="@+id/action_genreFragment_to_movieSearchFragment"
+            app:destination="@id/movieSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/moviesFragment"
@@ -31,4 +34,8 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailFragment"
         android:label="MovieDetailFragment" />
+    <fragment
+        android:id="@+id/movieSearchFragment"
+        android:name="com.nizzle94.architecturecomponentmvp.ui.main.search.MovieSearchFragment"
+        android:label="MovieSearchFragment" />
 </navigation>

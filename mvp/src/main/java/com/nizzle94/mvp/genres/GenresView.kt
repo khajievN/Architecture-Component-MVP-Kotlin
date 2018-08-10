@@ -6,11 +6,12 @@ import com.nizzle94.mvp.BaseView
 /**
  * Created by Khajiev Nizomjon on 12/06/2018.
  */
-interface GenresView : BaseView {
+interface GenresView<T> : BaseView {
 
     fun loadViewModel()
 
-    fun populateRecyclerList(genreResponse: GenreResponse?)
+    fun populateRecyclerList(response: T?)
+
 
     fun initSwipeRefreshLayout()
 

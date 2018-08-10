@@ -98,6 +98,9 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.butterKnife_version"
     kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnife_version"
 
+    // UI
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+
     // tests
     testImplementation "junit:junit:$rootProject.junit_version"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInline_version"

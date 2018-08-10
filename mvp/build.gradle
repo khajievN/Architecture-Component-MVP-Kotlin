@@ -48,6 +48,11 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroid_version"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJava_version"
 
+    // butter knife
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnife_version"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnife_version"
+
+
     // tests
     testImplementation "junit:junit:$rootProject.junit_version"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoInline_version"

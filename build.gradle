@@ -24,7 +24,6 @@ buildscript {
         mockitoKotlin_version = "1.5.0"
     }
 
-
     repositories {
         google()
         jcenter()

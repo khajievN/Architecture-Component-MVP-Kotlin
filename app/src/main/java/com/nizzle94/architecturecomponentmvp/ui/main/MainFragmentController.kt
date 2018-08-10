@@ -9,4 +9,5 @@ interface MainFragmentController {
 
     fun openMovieDetail(movieId: Int)
 
+    fun openMovieDetailBySearch(movieId: Int)
 }

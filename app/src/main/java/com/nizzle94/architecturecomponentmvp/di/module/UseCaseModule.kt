@@ -5,10 +5,13 @@ import com.nizzle94.data.login.LoginRepository
 import com.nizzle94.data.main.movie.genre.GenreRepository
 import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
 import com.nizzle94.data.main.movie.movies.MoviesRepository
+import com.nizzle94.data.main.movie.search.MovieSearchRepository
 import com.nizzle94.domain.login.LoginUseCase
 import com.nizzle94.domain.main.movie.genre.GenreUseCase
+import com.nizzle94.domain.main.movie.genre.TvListUseCase
 import com.nizzle94.domain.main.movie.movie_detail.MovieDetailUseCase
 import com.nizzle94.domain.main.movie.movies.MoviesUseCase
+import com.nizzle94.domain.main.movie.search.MovieSearchUseCase
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -76,6 +79,28 @@ class UseCaseModule {
         genreRepository: GenreRepository
     ): GenreUseCase {
         return GenreUseCase(genreRepository, ioScheduler, mainThreadScheduler)
+
+    }
+
+    @AppScope
+    @Provides
+    fun providesTvListUseCase(
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        genreRepository: GenreRepository
+    ): TvListUseCase {
+        return TvListUseCase(genreRepository, ioScheduler, mainThreadScheduler)
+
+    }
+
+    @AppScope
+    @Provides
+    fun providesMovieSearchUseCase(
+        @Named("ioScheduler") ioScheduler: Scheduler,
+        @Named("mainThreadScheduler") mainThreadScheduler: Scheduler,
+        movieSearchRepository: MovieSearchRepository
+    ): MovieSearchUseCase {
+        return MovieSearchUseCase(movieSearchRepository, ioScheduler, mainThreadScheduler)
 
     }
 }

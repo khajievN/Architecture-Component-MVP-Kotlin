@@ -3,6 +3,7 @@ package com.nizzle94.data.datasource
 import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.data.reponse.MoviesResponse
+import com.nizzle94.data.reponse.TvListResponse
 import io.reactivex.Single
 
 /**
@@ -15,4 +16,8 @@ interface MoviesDataStore {
     fun getMoviesByGenre(genreId: Int): Single<MoviesResponse>
 
     fun getMovieDetail(movieId: Int): Single<MovieDetailResponse>
+
+    fun getMovieListByQuery(keyword: String): Single<MoviesResponse>
+
+    fun getTvList(): Single<TvListResponse>
 }

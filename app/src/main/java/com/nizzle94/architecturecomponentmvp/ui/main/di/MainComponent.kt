@@ -6,6 +6,8 @@ import com.nizzle94.architecturecomponentmvp.ui.main.MainActivity
 import com.nizzle94.architecturecomponentmvp.ui.main.genre.GenreFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.movie_detail.MovieDetailFragment
 import com.nizzle94.architecturecomponentmvp.ui.main.movies.MoviesFragment
+import com.nizzle94.architecturecomponentmvp.ui.main.search.MovieSearchFragment
+import com.nizzle94.architecturecomponentmvp.ui.main.tv.TvListFragment
 import dagger.Subcomponent
 
 /**
@@ -24,6 +26,10 @@ interface MainComponent {
     fun inject(moviesFragment: MoviesFragment)
 
     fun inject(movieDetailFragment: MovieDetailFragment)
+
+    fun inject(movieSearchFragment: MovieSearchFragment)
+
+    fun inject(tvListFragment: TvListFragment)
 
     @Subcomponent.Builder
     interface Builder {

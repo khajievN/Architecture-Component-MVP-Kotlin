@@ -13,6 +13,7 @@ import com.nizzle94.data.cache.CacheProvider
 import com.nizzle94.data.main.movie.genre.GenreRepository
 import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
 import com.nizzle94.data.main.movie.movies.MoviesRepository
+import com.nizzle94.data.main.movie.search.MovieSearchRepository
 import com.nizzle94.data.service.api.Endpoint
 import dagger.Component
 import io.rx_cache2.internal.Disk
@@ -42,4 +43,6 @@ interface AppComponent {
     fun getMoviesRepository(): MoviesRepository
 
     fun getMovieDetailRepository(): MovieDetailRepository
+
+    fun getMovieSearchRepository(): MovieSearchRepository
 }

@@ -3,6 +3,7 @@ package com.nizzle94.data.datasource
 import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.data.reponse.MoviesResponse
+import com.nizzle94.data.reponse.TvListResponse
 import com.nizzle94.data.service.api.MoviesApiService
 import io.reactivex.Single
 import javax.inject.Inject
@@ -14,6 +15,15 @@ class MoviesDataSource @Inject constructor(
     private val moviesApiService: MoviesApiService
 ) :
     MoviesDataStore {
+    override fun getTvList(): Single<TvListResponse> {
+        return moviesApiService.getTvList()
+    }
+
+    override fun getMovieListByQuery(keyword: String): Single<MoviesResponse> {
+        return moviesApiService.getMovieListByQuery(keyword)
+    }
+
+
     override fun getMovieDetail(movieId: Int): Single<MovieDetailResponse> {
         return moviesApiService.getMovieDetail(movieId)
     }
@@ -25,6 +35,7 @@ class MoviesDataSource @Inject constructor(
     override fun getGenres(): Single<GenreResponse> {
         return moviesApiService.getGenreList()
     }
+
 
     private companion object {
         val GENRE_KEY = "GR"

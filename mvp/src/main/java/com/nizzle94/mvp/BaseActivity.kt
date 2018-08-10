@@ -3,6 +3,7 @@ package com.nizzle94.mvp
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import butterknife.ButterKnife
 import javax.inject.Inject
 
 /**
@@ -15,12 +16,16 @@ abstract class BaseActivity<V : BaseView, P : BasePresenter<Any>> : AppCompatAct
 
     protected abstract fun getLayout(): Int
     protected abstract fun initInjector()
+    protected abstract fun init()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ButterKnife.bind(this)
         setContentView(getLayout())
+
         initInjector()
         initPresenter()
+        init()
     }
 
     private fun initPresenter() {

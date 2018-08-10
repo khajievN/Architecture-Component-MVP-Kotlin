@@ -16,6 +16,10 @@ import javax.inject.Inject
  * Created by Khajiev Nizomjon on 04/06/2018.
  */
 class LoginActivity : BaseActivity<LoginController, LoginPresenter>(), LoginController {
+    override fun init() {
+
+    }
+
     override fun success() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()

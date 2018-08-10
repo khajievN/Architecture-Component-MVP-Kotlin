@@ -1,6 +1,7 @@
 package com.nizzle94.data.main.movie.genre
 
 import com.nizzle94.data.reponse.GenreResponse
+import com.nizzle94.data.reponse.TvListResponse
 import io.reactivex.Single
 
 /**
@@ -8,4 +9,6 @@ import io.reactivex.Single
  */
 interface GenreRepository {
     fun getGenreList(): Single<GenreResponse>
+
+    fun getTvList(): Single<TvListResponse>
 }

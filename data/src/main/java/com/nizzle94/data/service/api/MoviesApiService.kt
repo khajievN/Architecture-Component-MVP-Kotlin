@@ -3,6 +3,7 @@ package com.nizzle94.data.service.api
 import com.nizzle94.data.reponse.GenreResponse
 import com.nizzle94.data.reponse.MovieDetailResponse
 import com.nizzle94.data.reponse.MoviesResponse
+import com.nizzle94.data.reponse.TvListResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -12,6 +13,14 @@ import javax.inject.Inject
 
 class MoviesApiService @Inject constructor(private val endpoint: MoviesEndpoint) :
     MoviesEndpoint {
+    override fun getTvList(): Single<TvListResponse> {
+        return endpoint.getTvList()
+    }
+
+    override fun getMovieListByQuery(keyword: String): Single<MoviesResponse> {
+        return endpoint.getMovieListByQuery(keyword)
+    }
+
     override fun getGenreList(): Single<GenreResponse> {
         return endpoint.getGenreList()
     }

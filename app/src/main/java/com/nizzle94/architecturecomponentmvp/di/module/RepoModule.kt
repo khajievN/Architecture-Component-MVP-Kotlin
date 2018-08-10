@@ -9,6 +9,8 @@ import com.nizzle94.data.main.movie.movie_detail.MovieDetailDataRepository
 import com.nizzle94.data.main.movie.movie_detail.MovieDetailRepository
 import com.nizzle94.data.main.movie.movies.MoviesDataRepository
 import com.nizzle94.data.main.movie.movies.MoviesRepository
+import com.nizzle94.data.main.movie.search.MovieSearchDataRepository
+import com.nizzle94.data.main.movie.search.MovieSearchRepository
 import dagger.Module
 import dagger.Provides
 
@@ -41,6 +43,13 @@ class RepoModule {
     @AppScope
     fun provideGenreRepository(gennreDataRepository: GenreDataRepository): GenreRepository {
         return gennreDataRepository
+    }
+
+
+    @Provides
+    @AppScope
+    fun provideMovieSearchRepository(movieSearchRepository: MovieSearchDataRepository): MovieSearchRepository {
+        return movieSearchRepository
     }
 
 }
